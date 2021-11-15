@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab14_3</title>
+</head>
+
+
+<style>
+        a {
+            text-decoration: none;
+            /* Убираем подчёркивание */
+        }
+
+        a[href^="mailto"]::after {
+            content: '\1F4E9';
+            /* Иконка */
+            padding-left: 5px;
+            /* Расстояние от иконки до текста */
+            vertical-align: text-bottom;
+            /* Выравнивание по вертикали */
+            font-size: 0.8em;
+            /* Размер иконки */
+        }
+
+        :root {
+        font-family: sans-serif;
+        font-size: 24px;
+        color: rgb(27, 27, 27);
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    a, p {
+        text-decoration: none;
+        color:rgb(27, 27, 27);
+        font-size: 0.85rem;
+    }
+    body {
+        padding: 7px;
+    }
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    header>h1{
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 1.8rem;
+        margin: 10px 0px;
+    }
+    header>h1>span {
+        color: rgb(227, 71, 90);
+        font-family: 'Caveat', cursive;
+        font-weight: 600;
+        font-size: 1.2em;
+    }
+    nav {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between
+    }
+    nav>label{
+        display: flex;
+        flex-basis: calc(50% - 10px);  
+        padding: 10px 2px;
+        margin: 5px;
+        border: 1px solid rgb(218, 218, 218);
+        border-radius: 5px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(231, 231, 231);
+        transition: 0.15s ease;
+    }
+    nav>p, nav>div{
+        display: none;
+    }
+    nav>label:hover {
+        background-color: rgb(214, 214, 214);
+    }
+    nav>input {
+        display: none;
+    }
+    nav>input:checked+label
+    {
+        background-color: rgb(187, 187, 187);
+    }
+    nav>input#reset-filter:checked~label
+    {
+        background-color: rgb(231, 231, 231);
+    }
+    .box {
+        margin: 5px 5px;
+        height: 250px;
+    }
+    .box>p{
+        display: none;
+    }
+    img:hover {
+        filter: brightness(85%);
+    }
+    .box>img{
+        border-radius: 10px;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transition: 0.15s ease;
+    }
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 10px 5px;
+        padding-top: 10px;
+        border-top: 1px solid rgb(226, 226, 226);
+    }
+    footer>*{
+        margin: 0;
+    }
+    footer>a{
+        text-decoration: underline;
+    }
+    @media (min-width: 730px) {
+        :root {
+            font-size: 16px;
+        }
+        nav>label{
+            flex-basis: calc(33.333% - 10px); 
+            font-size: 0.9rem; 
+        }
+        main {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .box {
+            flex-basis: calc(33.333% - 10px);  
+            max-width: calc(33.333% - 10px);
+            padding: 10px;
+            background-color: rgb(246, 247, 248);
+            border: 1px solid rgb(231, 231, 231);
+            border-radius: 5px;
+            height: 200px;
+        }
+        .box>img {
+            border-radius: 0;
+            height: 90%;
+        }
+        .box>p.name{
+            display: inline-block;
+            height: min-content;
+            overflow: hidden;
+        }
+        .box>p.name>b{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .box>p.receipt{
+            display: none;
+        }
+    }
+    @media (min-width: 1200px) {
+        :root {
+            font-size: 14px;
+        }
+        body {
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+        #nav-menu {
+            display: flex;
+        }
+        .box {
+            display: flex;
+            align-content: flex-start;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: min-content;
+        }
+        .box>img{
+            height: 80px;
+            width: 100px;
+            margin-right: 10px;
+        }
+        .box>p.receipt{
+            display: flex;
+            flex: 1 1 100%;
+            border-top: 1px solid rgb(216, 216, 216);
+            margin-top: 13px;
+            padding-top: 10px;
+        }
+        .box>.name{
+            flex: 1;
+        }
+        .box>.name>b{
+            display: block;
+        }
+        nav{
+            display: flex;
+            flex-direction: row;
+            align-content: start;
+            justify-content: center;
+            flex-wrap: wrap;
+            order: 1;
+            padding: 10px 15px;
+            margin: 5px;
+            background-color: rgb(246, 247, 248);
+            border: 1px solid rgb(231, 231, 231);
+            border-radius: 5px;
+        }
+        nav>label{
+            background-color: rgb(227, 230, 233);
+            flex-basis: 100%;
+        }
+        nav>p, nav>div{
+            display: block;
+        }
+        .slidecontainer {
+            margin: 10px 0;
+        }
+        nav>p:first-child{
+            margin-top: 20px;
+        }
+        nav>p:last-of-type{
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+<body>
+    <header>
+        <h1>Тортики&nbsp;<span>&</span>&nbsp;Тістечка</h1>
+    </header>
+    <div id="nav-menu">
+        <nav>
+            <p>Калорії у порції</p>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="1000" value="300" class="slider" id="Range">
+            </div>
+            <p>Від 0 до 1000 кКал</p>
+
+            <input class="checkbox-pie" type="checkbox" id="dessert-1" checked="checked" />
+            <label for="dessert-1">Торт</label>
+
+            <input class="checkbox-cake" type="checkbox" id="dessert-2" checked="checked" />
+            <label for="dessert-2">Тістечко</label>
+
+            <input class="checkbox-syrnyck" type="checkbox" id="dessert-3" checked="checked" />
+            <label for="dessert-3">Сирники</label>
+
+            <input class="checkbox-roll" type="checkbox" id="dessert-4" checked="checked" />
+            <label for="dessert-4">Рулет</label>
+
+            <input class="tort" type="checkbox" id="dessert-5" checked="checked" />
+            <label for="dessert-5">Пиріг</label>
+
+            <input name="cake" id="reset-filter" type="radio">
+            <label for="reset-filter">Скинути фільтр</label>
+
+        </nav>
+        <main>
+            <div id="smetankovyy" class="box pie">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqpU6c5G8Y4Bf9vKPcVicslCthv1mnS346-g&usqp=CAU" alt="">
+                <p class="name">Торт:&nbsp;<b>Сметанковий</b></p>
+                <p class="receipt">Калорії у порції: 911 кКал</p>
+            </div>
+
+            <div id="mafin" class="box cake">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSE7i5LtzkcJRJiHbtrmGI3NvJnIC7ULQvHJeb9OgdPsxkwz6G2CmUKUezGTrRmzNRMCs&usqp=CAU" alt="">
+                <p class="name">Тістечко:&nbsp;<b>Мафін</b></p>
+                <p class="receipt">Калорії у порції: 54 кКал</p>
+            </div>
+
+            <div id="3-berries" class="box syrnyck">
+                <img src="https://lh3.googleusercontent.com/proxy/5llaieI-ABT8JUN3chAND7LfCIF-TPHAENWXa0op4oSwc7DEmCrEx5GDDiWXiqT6_wKv0qH1vSxXBwENE0nuuH0g-poQrVZTURl25V1eIIL2MZgrQKhTCtQPr9Y40w1F1qAlbCeX7G6_ugRkpPeq" alt="">
+                <p class="name">Сирники:&nbsp;<b>3 ягоди</b></p>
+                <p class="receipt">Калорії у порції: 100 кКал</p>
+            </div>
+
+            <div id="tasty" class="box cake">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe9LIX1a1fCEZZTxnkcWGK6WchqcHuxn4bAg&usqp=CAU" alt="">
+                <p class="name">Торт:&nbsp;<b>Смачний</b></p>
+                <p class="receipt">Калорії у порції: 500 кКал</p>
+            </div>
+            
+            <div id="festive" class="box roll">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQAnNO5T22lG_4Q2gOQvvdaF-djSWL6pKZ4w&usqp=CAU" alt="">
+                <p class="name">Рулет:&nbsp;<b>Святковий</b></p>
+                <p class="receipt">Калорії у порції: 99 кКал</p>
+            </div>
+
+            <div id="pyrig" class="box cake">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX_fppQw0N8dcOPkjku31HcekDgNbnFDxJtQ&usqp=CAU" alt="">
+                <p class="name">Пиріг:&nbsp;<b>Свято у бабусі</b></p>
+                <p class="receipt">Калорії у порції: 500 кКал</p>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>Контакти:</p>
+        <a href="mailto:dvkravets.fitu19@kubg.edu.ua">dvkravets.fitu19@kubg.edu.ua</a>
+    </footer>
+
+</body>
+
+</html>
